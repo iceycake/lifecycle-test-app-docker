@@ -18,3 +18,9 @@ services:
         ENV_SOURCE: 'yaml'
         FOOBAR_KEY: '304870ujdfojdfjdlfdf'
         DEP: '{{lifecycle-test-app-codefresh_internalHostName}}'
+  - name: 'lifecycle-test-app-docker'
+    github:
+      env:
+        ENV_SOURCE: 'yaml'
+        FOOBAR_KEY: '304870ujdfojdfjdlfdf'
+        DEP: '{{lifecycle-test-app-codefresh_internalHostName}}'
