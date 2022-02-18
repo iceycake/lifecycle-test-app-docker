@@ -8,4 +8,3 @@ service:
       FOOBAR_KEY: '304870ujdfojdfjdlfdf'
       BRANCH: 'branch-test'
       DEP: '{{lifecycle-test-app-codefresh_internalHostname}}'
-
