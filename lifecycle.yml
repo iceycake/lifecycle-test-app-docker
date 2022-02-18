@@ -1,9 +1,20 @@
 ---
-version: '0.0.1-alpha-1'
+version: '0.0.2-alpha-1'
 
-service:
-  github:
-    env:
-      ENV_SOURCE: 'yaml'
-      FOOBAR_KEY: '304870ujdfojdfjdlfdf'
-      BRANCH: 'branch-test'
+environment:
+  webhooks:
+    - state: 'deployed'
+      codefresh:
+        pipelineId: '61fc3794d13092dd47178ca4'
+        trigger: 'heydoctor/webapp'
+        env:
+          BRANCH: 'main'
+          SOURCE: 'yaml'
+
+services:
+  - name: 'lifecycle-test-app-docker'
+    github:
+      env:
+        ENV_SOURCE: 'yaml'
+        FOOBAR_KEY: '304870ujdfojdfjdlfdf'
+        DEP: '{{lifecycle-test-app-codefresh_internalHostName}}'
