@@ -10,6 +10,20 @@ environment:
         env:
           BRANCH: 'main'
           SOURCE: 'yaml'
+    - state: 'deployed'
+      codefresh:
+        pipelineId: '61fc3794d13092dd47178ca4'
+        trigger: 'heydoctor/webapp'
+        env:
+          BRANCH: 'main'
+          SOURCE: 'yaml'
+    - state: 'error'
+      codefresh:
+        pipelineId: '61fc3794d13092dd47178ca4'
+        trigger: 'heydoctor/webapp'
+        env:
+          BRANCH: 'main'
+          SOURCE: 'yaml'
 
 services:
   - name: 'lifecycle-test-app-docker'
