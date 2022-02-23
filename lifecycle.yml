@@ -4,26 +4,21 @@ version: '0.0.2-alpha-1'
 environment:
   webhooks:
     - state: 'deployed'
-      codefresh:
-        pipelineId: '61fc3794d13092dd47178ca4'
-        trigger: 'heydoctor/webapp'
-        env:
-          BRANCH: 'main'
-          SOURCE: 'yaml'
+      type: 'codefresh'
+      pipelineId: '61fc3794d13092dd47178ca4'
+      trigger: 'heydoctor/web-app'
+      env:
+        branch: 'main'
+        SOURCE: 'yaml'
+        ID: '1'
     - state: 'deployed'
-      codefresh:
-        pipelineId: '61fc3794d13092dd47178ca4'
-        trigger: 'heydoctor/webapp'
-        env:
-          BRANCH: 'main'
-          SOURCE: 'yaml'
-    - state: 'error'
-      codefresh:
-        pipelineId: '61fc3794d13092dd47178ca4'
-        trigger: 'heydoctor/webapp'
-        env:
-          BRANCH: 'main'
-          SOURCE: 'yaml'
+      type: 'codefresh'
+      pipelineId: '61fc3794d13092dd47178ca4'
+      trigger: 'heydoctor/web-app'
+      env:
+        branch: 'main'
+        SOURCE: 'yaml'
+        ID: '2'
 
 services:
   - name: 'lifecycle-test-app-docker'
