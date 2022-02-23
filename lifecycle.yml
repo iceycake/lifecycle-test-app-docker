@@ -4,6 +4,8 @@ version: '0.0.2-alpha-1'
 environment:
   webhooks:
     - state: 'deployed'
+      name: 'e2e test'
+      description: 'some description'
       type: 'codefresh'
       pipelineId: '61fc3794d13092dd47178ca4'
       trigger: 'heydoctor/web-app'
@@ -12,6 +14,8 @@ environment:
         SOURCE: 'yaml'
         ID: '1'
     - state: 'deployed'
+      name: 'synthetic test'
+      description: 'some description'
       type: 'codefresh'
       pipelineId: '61fc3794d13092dd47178ca4'
       trigger: 'heydoctor/web-app'
