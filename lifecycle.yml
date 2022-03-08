@@ -1,9 +1,41 @@
 ---
-version: '0.0.1-alpha-1'
+version: '0.0.3-alpha-1'
 
-service:
-  github:
-    env:
-      ENV_SOURCE: 'yaml'
-      FOOBAR_KEY: '304870ujdfojdfjdlfdf'
-      BRANCH: 'branch-test'
+services:
+  - name: 'lifecycle-test-app-docker'
+    github:
+      repository: 'iceycake/lifecycle-test-app-docker'
+      branchName: 'main'
+      docker:
+        app:
+          dockerfilePath: 'app1/dockerfiles/app.dockerfile'
+          defaultTags: 'main'
+          env:
+            source: 'yaml'
+            branch: '{{lifecycle-test-app-docker_branchName}}'
+            appName: 'app1'
+        init:
+          dockerfilePath: 'app1/dockerfiles/init.dockerfile'
+          env:
+            source: 'yaml'
+            branch: '{{lifecycle-test-app-docker_branchName}}'
+            appName: 'app1'
+  - name: 'lifecycle-test-app-docker-app2'
+    github:
+      repository: 'iceycake/lifecycle-test-app-docker'
+      branchName: 'main'
+      docker:
+        app:
+          dockerfilePath: 'app2/dockerfiles/app.dockerfile'
+          defaultTags: 'main'
+          env:
+            source: 'yaml'
+            branch: '{{lifecycle-test-app-docker_branchName}}'
+            appName: 'app2'
+        init:
+          dockerfilePath: 'app2/dockerfiles/init.dockerfile'
+          env:
+            source: 'yaml'
+            branch: '{{lifecycle-test-app-docker_branchName}}'
+            appName: 'app2'
+
