@@ -7,9 +7,9 @@ services:
       repository: 'iceycake/lifecycle-test-app-docker'
       branchName: 'main'
       docker:
+        defaultTag: 'main'
         app:
           dockerfilePath: 'app1/dockerfiles/app.dockerfile'
-          defaultTags: 'main'
           env:
             source: 'yaml'
             branch: '{{lifecycle-test-app-docker_branchName}}'
@@ -25,9 +25,9 @@ services:
       repository: 'iceycake/lifecycle-test-app-docker'
       branchName: 'main'
       docker:
+        defaultTag: 'main'
         app:
           dockerfilePath: 'app2/dockerfiles/app.dockerfile'
-          defaultTags: 'main'
           env:
             source: 'yaml'
             branch: '{{lifecycle-test-app-docker_branchName}}'
