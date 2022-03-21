@@ -2,7 +2,7 @@
 version: '0.0.3-alpha-1'
 
 services:
-  - name: 'lifecycle-test-app-docker'
+  - name: 'lc-test-app-docker'
     github:
       repository: 'iceycake/lifecycle-test-app-docker'
       branchName: 'main'
@@ -12,15 +12,15 @@ services:
           dockerfilePath: 'app1/dockerfiles/app.dockerfile'
           env:
             source: 'yaml'
-            branch: '{{lifecycle-test-app-docker_branchName}}'
+            branch: '{{{lc-test-app-docker_branchName}}}'
             appName: 'app1'
         init:
           dockerfilePath: 'app1/dockerfiles/init.dockerfile'
           env:
             source: 'yaml'
-            branch: '{{lifecycle-test-app-docker_branchName}}'
+            branch: '{{{lc-test-app-docker_branchName}}}'
             appName: 'app1'
-  - name: 'lifecycle-test-app-docker-app2'
+  - name: 'lc-test-app-docker-app2'
     github:
       repository: 'iceycake/lifecycle-test-app-docker'
       branchName: 'main'
@@ -30,12 +30,12 @@ services:
           dockerfilePath: 'app2/dockerfiles/app.dockerfile'
           env:
             source: 'yaml'
-            branch: '{{lifecycle-test-app-docker_branchName}}'
+            branch: '{{lc-test-app-docker_branchName}}'
             appName: 'app2'
         init:
           dockerfilePath: 'app2/dockerfiles/init.dockerfile'
           env:
             source: 'yaml'
-            branch: '{{lifecycle-test-app-docker_branchName}}'
+            branch: '{{lc-test-app-docker_branchName}}'
             appName: 'app2'
 
