@@ -1,0 +1,40 @@
+---
+version: '0.0.3-alpha-1'
+
+environment:
+  defaultServices:
+    - name: 'github-1'
+    - name: 'github-2'
+    - name: 'lifecycle-test-app-github'
+      repository: 'iceycake/lifecycle-test-app-github'
+  optionalServices:
+    - name: 'lifecycle-test-app-codefresh'
+      repository: iceycake/lifecycle-test-app-codefresh
+
+services:
+  - name: 'github-1'
+    github:
+      repository: 'iceycake/lifecycle-test-app-docker'
+      branchName: 'main'
+      docker:
+        defaultTag: 'main'
+        app:
+          dockerfilePath: 'github-1/app.dockerfile'
+          env:
+            SOURCE: 'yaml'
+            TOKEN: 'abcdef012345'
+        init:
+          dockerfilePath: 'github-1/init.dockerfile'
+  - name: 'github-2'
+    github:
+      repository: 'iceycake/lifecycle-test-app-docker'
+      branchName: 'main'
+      docker:
+        defaultTag: 'main'
+        app:
+          dockerfilePath: 'github-2/app.dockerfile'
+          env:
+            SOURCE: 'yaml'
+            TOKEN: 'abcdef012345'
+        init:
+          dockerfilePath: 'github-2/init.dockerfile'
