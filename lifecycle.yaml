@@ -2,6 +2,9 @@
 version: '0.0.3-alpha-1'
 
 environment:
+  defaultServices:
+    - name: 'github-1'
+    - name: 'github-2'
 
 services:
   - name: 'github-1'
