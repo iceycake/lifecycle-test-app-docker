@@ -1,13 +1,8 @@
 ---
 version: '0.0.3-alpha-1'
 
-environment:
-  defaultServices:
-    - name: 'github-1'
-    - name: 'github-2'
-
 services:
-  - name: 'github-1'
+  - name: 'lifecycle-test-app-docker'
     github:
       repository: 'iceycake/lifecycle-test-app-docker'
       branchName: 'main'
@@ -20,7 +15,7 @@ services:
             TOKEN: 'abcdef012345'
         init:
           dockerfilePath: 'github-1/init.dockerfile'
-  - name: 'github-2'
+  - name: 'lifecycle-test-app-docker-1'
     github:
       repository: 'iceycake/lifecycle-test-app-docker'
       branchName: 'main'
