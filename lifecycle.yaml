@@ -13,8 +13,6 @@ services:
           env:
             SOURCE: 'yaml'
             TOKEN: 'abcdef012345'
-        init:
-          dockerfilePath: 'github-1/init.dockerfile'
   - name: 'lifecycle-test-app-docker-1'
     github:
       repository: 'iceycake/lifecycle-test-app-docker'
@@ -26,5 +24,3 @@ services:
           env:
             SOURCE: 'yaml'
             TOKEN: 'abcdef012345'
-        init:
-          dockerfilePath: 'github-2/init.dockerfile'
