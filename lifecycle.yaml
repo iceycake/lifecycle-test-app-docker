@@ -10,7 +10,8 @@ services:
         defaultTag: 'main'
         app:
           dockerfilePath: 'github-1/app.dockerfile'
-          port: '80'
+          ports:
+            - 80
           env:
             SOURCE: 'yaml'
             TOKEN: 'abcdef012345'
@@ -24,7 +25,8 @@ services:
         defaultTag: 'main'
         app:
           dockerfilePath: 'github-2/app.dockerfile'
-          port: '80'
+          ports:
+            - 80
           env:
             SOURCE: 'yaml'
             TOKEN: 'abcdef012345'
