@@ -33,6 +33,12 @@ services:
         init:
           enable: false
       deployment:
+        public: true
+        resource:
+          cpu:
+            request: '5m'
+          memory:
+            request: '500Mi'
         readiness:
           httpGet:
             path: '/'
