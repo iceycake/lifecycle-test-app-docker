@@ -40,6 +40,12 @@ services:
           memory:
             request: '500Mi'
         readiness:
+          tcpSocketPort: 80
           httpGet:
             path: '/'
             port: 80
+          initialDelaySeconds: 0
+          periodSeconds: 10
+          timeoutSeconds: 1
+          successThreshold: 1
+          failureThreshold: 30
