@@ -24,6 +24,7 @@ services:
       docker:
         defaultTag: 'main'
         app:
+          dockerfilePath: 'github-2/app.dockerfile'
           ports:
             - 80
           env:
