@@ -1,0 +1,52 @@
+---
+version: '0.0.3-alpha-2'
+
+services:
+  - name: 'lifecycle-test-app-docker'
+    github:
+      repository: 'iceycake/lifecycle-test-app-docker'
+      branchName: 'main'
+      docker:
+        defaultTag: 'main'
+        app:
+          dockerfilePath: 'github-1/app.dockerfile'
+          ports:
+            - 80
+          env:
+            SOURCE: 'yaml'
+            TOKEN: 'abcdef012345'
+        init:
+          enable: false
+  - name: 'lifecycle-test-app-docker-1'
+    github:
+      repository: 'iceycake/lifecycle-test-app-docker'
+      branchName: 'main'
+      docker:
+        defaultTag: 'main'
+        app:
+          dockerfilePath: 'github-2/app.dockerfile'
+          ports:
+            - 80
+          env:
+            SOURCE: 'yaml'
+            TOKEN: 'abcdef012345'
+            pullRequestNumber: '{{pullRequestNumber}}'
+        init:
+          enable: false
+      deployment:
+        public: true
+        resource:
+          cpu:
+            request: '5m'
+          memory:
+            request: '500Mi'
+        readiness:
+          tcpSocketPort: 80
+          httpGet:
+            path: '/'
+            port: 80
+          initialDelaySeconds: 0
+          periodSeconds: 10
+          timeoutSeconds: 1
+          successThreshold: 1
+          failureThreshold: 30
