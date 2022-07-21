@@ -35,6 +35,7 @@ services:
           enable: false
       deployment:
         public: true
+        defaultUUID: 'good-dev-0'
         resource:
           cpu:
             request: '5m'
