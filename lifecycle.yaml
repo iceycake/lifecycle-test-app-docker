@@ -30,7 +30,7 @@ services:
           env:
             SOURCE: 'yaml'
             TOKEN: 'abcdef012345'
-            pullRequestNumber: '{{pullRequestNumber}}'
+            pullRequestNumber: '{{pullRequestNumber}}''
         # init:
         #   enable: false
       # deployment:
