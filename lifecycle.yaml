@@ -19,6 +19,7 @@ services:
           enable: false
   - name: 'lifecycle-test-app-docker-1'
     github:
+      repository: 'iceycake/lifecycle-test-app-docker'
       branchName: 'main'
       docker:
         defaultTag: 'main'
@@ -28,7 +29,7 @@ services:
             - 80
           env:
             SOURCE: 'yaml'
-            TOKEN: 'abcdef012345'
+            TOKEN: 'abcdef012345',
             pullRequestNumber: '{{pullRequestNumber}}'
         init:
           enable: false
