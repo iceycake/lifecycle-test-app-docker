@@ -19,7 +19,6 @@ services:
           enable: false
   - name: 'lifecycle-test-app-docker-1'
     github:
-      repository: 'iceycake/lifecycle-test-app-docker'
       branchName: 'main'
       docker:
         defaultTag: 'main'
