@@ -10,13 +10,13 @@ services:
         defaultTag: 'main'
         app:
           dockerfilePath: 'github-1/app.dockerfile'
-          ports:
-            - 80
+          # ports:
+          #   - 80
           env:
             SOURCE: 'yaml'
             TOKEN: 'abcdef012345'
-        init:
-          enable: false
+        # init:
+        #   enable: false
   - name: 'lifecycle-test-app-docker-1'
     github:
       repository: 'iceycake/lifecycle-test-app-docker'
