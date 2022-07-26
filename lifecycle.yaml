@@ -25,29 +25,29 @@ services:
         defaultTag: 'main'
         app:
           dockerfilePath: 'github-2/app.dockerfile'
-          ports:
-            - 80
+          # ports:
+          #   - 80
           env:
             SOURCE: 'yaml'
             TOKEN: 'abcdef012345'
             pullRequestNumber: '{{pullRequestNumber}}'
-        init:
-          enable: false
-      deployment:
-        public: true
-        defaultUUID: 'good-dev-0'
-        resource:
-          cpu:
-            request: '5m'
-          memory:
-            request: '500Mi'
-        readiness:
-          tcpSocketPort: 80
-          httpGet:
-            path: '/'
-            port: 80
-          initialDelaySeconds: 0
-          periodSeconds: 10
-          timeoutSeconds: 1
-          successThreshold: 1
-          failureThreshold: 30
+        # init:
+        #   enable: false
+      # deployment:
+      #   public: true
+      #   defaultUUID: 'good-dev-0'
+      #   resource:
+      #     cpu:
+      #       request: '5m'
+      #     memory:
+      #       request: '500Mi'
+      #   readiness:
+      #     tcpSocketPort: 80
+      #     httpGet:
+      #       path: '/'
+      #       port: 80
+      #     initialDelaySeconds: 0
+      #     periodSeconds: 10
+      #     timeoutSeconds: 1
+      #     successThreshold: 1
+      #     failureThreshold: 30
