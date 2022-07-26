@@ -29,7 +29,7 @@ services:
             - 80
           env:
             SOURCE: 'yaml'
-            TOKEN: 'abcdef012345',
+            TOKEN: 'abcdef012345'
             pullRequestNumber: '{{pullRequestNumber}}'
         init:
           enable: false
