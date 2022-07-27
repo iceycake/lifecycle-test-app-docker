@@ -2,7 +2,7 @@
 version: '0.0.3-alpha-2'
 
 services:
-  - name: 'lifecycle-test-app-docker'
+  - name: 'test-db'
     github:
       repository: 'iceycake/lifecycle-test-app-docker'
       branchName: 'main'
