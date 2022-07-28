@@ -2,22 +2,9 @@
 version: '0.0.3-alpha-2'
 
 services:
-  - name: 'test-db'
-    github:
-      repository: 'iceycake/lifecycle-test-app-docker'
-      branchName: 'main'
-      docker:
-        defaultTag: 'main'
-        app:
-          dockerfilePath: 'github-2/app.dockerfile'
-          # ports:
-          #   - 80
-          env:
-            SOURCE: 'yaml'
-            TOKEN: 'abcdef012345'
-        # init:
-        #   enable: false
-  - name: 'lifecycle-test-app-docker-1'
+  - name: 'lifecycle-test-app-docker-1',
+    requires:
+      - 'test-db'
     github:
       repository: 'iceycake/lifecycle-test-app-docker'
       branchName: 'main'
@@ -51,3 +38,18 @@ services:
       #     timeoutSeconds: 1
       #     successThreshold: 1
       #     failureThreshold: 30
+  - name: 'test-db'
+    github:
+      repository: 'iceycake/lifecycle-test-app-docker'
+      branchName: 'main'
+      docker:
+        defaultTag: 'main'
+        app:
+          dockerfilePath: 'github-1/app.dockerfile'
+          # ports:
+          #   - 80
+          env:
+            SOURCE: 'yaml'
+            TOKEN: 'abcdef012345'
+        # init:
+        #   enable: false
