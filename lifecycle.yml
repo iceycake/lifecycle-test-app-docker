@@ -34,4 +34,4 @@ services:
         DEP: '{{lifecycle-test-app-codefresh_internalHostname}}'
         SHA: '{{lifecycle-test-app-docker_sha}}'
         uuid: '{{lifecycle-test-app-codefresh_uuid}}'
-        CHANGE: '1'
+        CHANGE: '2'
