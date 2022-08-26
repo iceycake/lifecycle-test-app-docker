@@ -1,3 +1,25 @@
 ---
-version: '0.0.2-alpha-1'
+version: '0.0.3-alpha-1'
 
+environment:
+  defaultServices:
+    - name: 'lifecycle-test-app-github'
+      repository: 'lifecycle-test-app-github'
+      branch: 'main'
+  optionalServices:
+    - name: 'lc-test-opt-1'
+      repository: 'lifecycle-test-app-optional-1'
+      branch: 'main'
+
+services:
+  - name: 'lifecycle-test-app-docker-1'
+    github:
+      repository: 'iceycake/lifecycle-test-app-docker'
+      branchName: 'main'
+      docker:
+        defaultTag: 'main'
+        app:
+          dockerfilePath: 'sysops/dockerfiles/app.dockerfile'
+          env:
+            SOURCE: 'yaml'
+            TOKEN1: 'abcdefghijk'
