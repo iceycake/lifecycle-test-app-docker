@@ -6,6 +6,7 @@ environment:
     - name: 'lifecycle-test-app-github'
       repository: 'iceycake/lifecycle-test-app-github'
       branch: 'main'
+    - name: 'no-db-config-app'
   optionalServices:
     - name: 'lc-test-opt-1'
       repository: 'iceycake/lifecycle-test-app-optional-1'
@@ -23,3 +24,13 @@ services:
           env:
             SOURCE: 'yaml'
             TOKEN1: 'abcdefghijk'
+  - name: 'no-db-config-app'
+    github:
+      repository: 'iceycake/lifecycle-test-app-docker'
+      branchName: 'main'
+      docker:
+        defaultTag: 'main'
+        app:
+          dockerfilePath: 'sysops/dockerfiles/app-2.dockerfile'
+          env:
+            SOURCE: 'yaml'
