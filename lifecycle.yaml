@@ -25,6 +25,16 @@ services:
             COMPONENT: app
             DB_HOST: "{{test-db_internalHostname}}"
             BUILD_UUID: "{{buildUUID}}"        
+      deployment:
+        public: true
+        capacityType: 'SPOT'
+        network:
+          grpc:
+            enable: true
+          hostPortMapping:
+            admin: '9991'
+            callback: '9999'
+            web: '8080'
   - name: 'test-db'
     docker:
       dockerImage: 'postgres'
