@@ -3,10 +3,7 @@ version: '0.0.3-alpha-1'
 
 environment:
   defaultServices:
-    - name: 'lifecycle-test-app-github'
-      repository: 'iceycake/lifecycle-test-app-github'
-      branch: 'main'
-    - name: 'no-db-config-app'
+    - name: 'lifecycle-test-app-docker-1'
   optionalServices:
     - name: 'lc-test-opt-1'
       repository: 'iceycake/lifecycle-test-app-optional-1'
@@ -14,6 +11,8 @@ environment:
 
 services:
   - name: 'lifecycle-test-app-docker-1'
+    requires:
+      - name: 'test-db'
     github:
       repository: 'iceycake/lifecycle-test-app-docker'
       branchName: 'main'
@@ -22,15 +21,21 @@ services:
         app:
           dockerfilePath: 'sysops/dockerfiles/app.dockerfile'
           env:
-            SOURCE: 'yaml'
-            TOKEN1: 'abcdefghijk'
-  - name: 'no-db-config-app'
-    github:
-      repository: 'iceycake/lifecycle-test-app-docker'
-      branchName: 'main'
-      docker:
-        defaultTag: 'main'
-        app:
-          dockerfilePath: 'sysops/dockerfiles/app-2.dockerfile'
-          env:
-            SOURCE: 'yaml'
+            ENV: lifecycle
+            COMPONENT: app
+            DB_HOST: "{{test-db_internalHostname}}"
+            BUILD_UUID: "{{buildUUID}}"        
+  - name: 'test-db'
+    docker:
+      dockerImage: 'postgres'
+      defaultTag: 'latest'
+      command: ''
+      arguments: ''
+      app:
+        dockerfilePath: 'sysops/dockerfiles/app-2.dockerfile'
+        env:
+          POSTGRES_USER: 'postgres_user'
+          POSTGRES_PASSWORD: 'postgres'
+          POSTGRES_DB: 'postgres_db'
+          SERVICE: 'test-db'
+          PGDATA: '/var/lib/postgresql/data/pgdata'
