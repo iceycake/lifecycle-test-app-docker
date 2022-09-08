@@ -18,6 +18,12 @@ services:
       branchName: 'main'
       docker:
         defaultTag: 'main'
+        init:
+          dockerfilePath: 'sysops/dockerfiles/init.dockerfile'
+          env:
+            COMPONENT: app
+            ENV: lifecycle
+            DB_HOST: {{test-db_internalHostname}}
         app:
           dockerfilePath: 'sysops/dockerfiles/app.dockerfile'
           env:
