@@ -23,7 +23,7 @@ services:
           env:
             COMPONENT: app
             ENV: lifecycle
-            DB_HOST: '{{test-db_internalHostname}}''
+            DB_HOST: '{{test-db_internalHostname}}'
         app:
           dockerfilePath: 'sysops/dockerfiles/app.dockerfile'
           env:
