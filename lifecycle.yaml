@@ -12,7 +12,7 @@ environment:
 services:
   - name: 'lifecycle-test-app-docker-1'
     requires:
-      - name: 'test-db'
+      - name: 'lta-db'
     github:
       repository: 'iceycake/lifecycle-test-app-docker'
       branchName: 'main'
@@ -42,6 +42,18 @@ services:
             callback: '9999'
             web: '8080'
   - name: 'test-db'
+    docker:
+      dockerImage: 'postgres'
+      defaultTag: 'latest'
+      command: ''
+      arguments: ''
+      env:
+        POSTGRES_USER: 'postgres_user'
+        POSTGRES_PASSWORD: 'postgres'
+        POSTGRES_DB: 'postgres_db'
+        SERVICE: 'test-db'
+        PGDATA: '/var/lib/postgresql/data/pgdata'
+  - name: 'lta-db'
     docker:
       dockerImage: 'postgres'
       defaultTag: 'latest'
