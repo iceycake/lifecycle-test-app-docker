@@ -1,0 +1,35 @@
+---
+version: '0.0.3-alpha-1'
+
+services:
+  - name: 'lifecycle-test-app-docker-1'
+    requires:
+      - name: 'lta-db'
+    github:
+      repository: 'iceycake/lifecycle-test-app-docker'
+      branchName: 'main'
+      docker:
+        defaultTag: 'main'
+        init:
+          dockerfilePath: 'new-dockerfiles/init.dockerfile'
+          env:
+            COMPONENT: app
+            ENV: lifecycle
+            DB_HOST: '{{test-db_internalHostname}}'
+        app:
+          dockerfilePath: 'new-dockerfiles/app.dockerfile'
+          env:
+            ENV: lifecycle
+            COMPONENT: app
+            DB_HOST: "{{test-db_internalHostname}}"
+            BUILD_UUID: "{{buildUUID}}"        
+      deployment:
+        public: true
+        capacityType: 'SPOT'
+        network:
+          grpc:
+            enable: true
+          hostPortMapping:
+            admin: '9991'
+            callback: '9999'
+            web: '8080'
