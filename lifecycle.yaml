@@ -4,15 +4,15 @@ version: '0.0.3-alpha-1'
 environment:
   defaultServices:
     - name: 'lifecycle-test-app-docker-1'
-  optionalServices:
-    - name: 'lc-test-opt-1'
-      repository: 'iceycake/lifecycle-test-app-optional-1'
-      branch: 'main'
+  # optionalServices:
+  #   - name: 'lc-test-opt-1'
+  #     repository: 'iceycake/lifecycle-test-app-optional-1'
+  #     branch: 'main'
 
 services:
   - name: 'lifecycle-test-app-docker-1'
-    requires:
-      - name: 'lta-db'
+    # requires:
+    #   - name: 'lta-db'
     github:
       repository: 'iceycake/lifecycle-test-app-docker'
       branchName: 'main'
@@ -41,27 +41,27 @@ services:
             admin: '9991'
             callback: '9999'
             web: '8080'
-  - name: 'test-db'
-    docker:
-      dockerImage: 'postgres'
-      defaultTag: 'latest'
-      command: ''
-      arguments: ''
-      env:
-        POSTGRES_USER: 'postgres_user'
-        POSTGRES_PASSWORD: 'postgres'
-        POSTGRES_DB: 'postgres_db'
-        SERVICE: 'test-db'
-        PGDATA: '/var/lib/postgresql/data/pgdata'
-  - name: 'lta-db'
-    docker:
-      dockerImage: 'postgres'
-      defaultTag: 'latest'
-      command: ''
-      arguments: ''
-      env:
-        POSTGRES_USER: 'postgres_user'
-        POSTGRES_PASSWORD: 'postgres'
-        POSTGRES_DB: 'postgres_db'
-        SERVICE: 'test-db'
-        PGDATA: '/var/lib/postgresql/data/pgdata'
+  # - name: 'test-db'
+  #   docker:
+  #     dockerImage: 'postgres'
+  #     defaultTag: 'latest'
+  #     command: ''
+  #     arguments: ''
+  #     env:
+  #       POSTGRES_USER: 'postgres_user'
+  #       POSTGRES_PASSWORD: 'postgres'
+  #       POSTGRES_DB: 'postgres_db'
+  #       SERVICE: 'test-db'
+  #       PGDATA: '/var/lib/postgresql/data/pgdata'
+  # - name: 'lta-db'
+  #   docker:
+  #     dockerImage: 'postgres'
+  #     defaultTag: 'latest'
+  #     command: ''
+  #     arguments: ''
+  #     env:
+  #       POSTGRES_USER: 'postgres_user'
+  #       POSTGRES_PASSWORD: 'postgres'
+  #       POSTGRES_DB: 'postgres_db'
+  #       SERVICE: 'test-db'
+  #       PGDATA: '/var/lib/postgresql/data/pgdata'
