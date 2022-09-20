@@ -11,8 +11,8 @@ environment:
 
 services:
   - name: 'lifecycle-test-app-docker-1'
-    # requires:
-    #   - name: 'lta-db'
+    requires:
+      - name: 'lta-db'
     github:
       repository: 'iceycake/lifecycle-test-app-docker'
       branchName: 'main'
@@ -23,13 +23,13 @@ services:
           env:
             COMPONENT: app
             ENV: lifecycle
-            DB_HOST: '{{test-db_internalHostname}}'
+            DB_HOST: '{{lta-db_internalHostname}}'
         app:
           dockerfilePath: 'sysops/dockerfiles/app.dockerfile'
           env:
             ENV: lifecycle
             COMPONENT: app
-            DB_HOST: "{{test-db_internalHostname}}"
+            DB_HOST: "{{lta-db_internalHostname}}"
             BUILD_UUID: "{{buildUUID}}"        
       deployment:
         public: true
@@ -37,10 +37,6 @@ services:
         network:
           grpc:
             enable: true
-          hostPortMapping:
-            admin: '9991'
-            callback: '9999'
-            web: '8080'
   # - name: 'test-db'
   #   docker:
   #     dockerImage: 'postgres'
@@ -53,15 +49,13 @@ services:
   #       POSTGRES_DB: 'postgres_db'
   #       SERVICE: 'test-db'
   #       PGDATA: '/var/lib/postgresql/data/pgdata'
-  # - name: 'lta-db'
-  #   docker:
-  #     dockerImage: 'postgres'
-  #     defaultTag: 'latest'
-  #     command: ''
-  #     arguments: ''
-  #     env:
-  #       POSTGRES_USER: 'postgres_user'
-  #       POSTGRES_PASSWORD: 'postgres'
-  #       POSTGRES_DB: 'postgres_db'
-  #       SERVICE: 'test-db'
-  #       PGDATA: '/var/lib/postgresql/data/pgdata'
+  - name: 'lta-db'
+    docker:
+      dockerImage: 'postgres'
+      defaultTag: 'latest'
+      env:
+        POSTGRES_USER: 'postgres_user'
+        POSTGRES_PASSWORD: 'postgres'
+        POSTGRES_DB: 'postgres_db'
+        SERVICE: 'test-db'
+        PGDATA: '/var/lib/postgresql/data/pgdata'
