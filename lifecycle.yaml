@@ -62,3 +62,10 @@ services:
       deployment:
         public: false
         capacityType: 'ON_DEMAND'
+        serviceDisks:
+          - name: 'postgres-volume'
+            mountPath: '/var/lib/postgresql/data'
+            accessModes: 'ReadWriteOnce'
+            storageSize: '5Gi'
+
+
