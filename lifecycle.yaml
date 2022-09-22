@@ -34,11 +34,6 @@ services:
       deployment:
         public: true
         capacityType: 'SPOT'
-        resource:
-          cpu:
-            request: '10m'
-          memory:
-            request: '50Mi'
         network:
           grpc:
             enable: true
