@@ -55,5 +55,3 @@ services:
             mountPath: '/var/lib/postgresql/data'
             accessModes: 'ReadWriteOnce'
             storageSize: '5Gi'
-
-
