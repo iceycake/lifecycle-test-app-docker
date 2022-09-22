@@ -4,6 +4,10 @@ version: '0.0.3-alpha-1'
 environment:
   defaultServices:
     - name: 'lifecycle-test-app-docker-1'
+  # optionalServices:
+  #   - name: 'lc-test-opt-1'
+  #     repository: 'iceycake/lifecycle-test-app-optional-1'
+  #     branch: 'main'
 
 services:
   - name: 'lifecycle-test-app-docker-1'
