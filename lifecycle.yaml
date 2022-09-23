@@ -26,6 +26,8 @@ services:
             DB_HOST: '{{lta-db_internalHostname}}'
         app:
           dockerfilePath: 'sysops/dockerfiles/app.dockerfile'
+          ports:
+            - 8080
           env:
             ENV: lifecycle
             COMPONENT: app
@@ -41,6 +43,8 @@ services:
     docker:
       dockerImage: 'postgres'
       defaultTag: 'latest'
+      ports:
+        - 5432
       env:
         POSTGRES_USER: 'postgres_user'
         POSTGRES_PASSWORD: 'postgres'
