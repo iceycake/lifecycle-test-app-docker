@@ -8,6 +8,16 @@ environment:
   #   - name: 'lc-test-opt-1'
   #     repository: 'iceycake/lifecycle-test-app-optional-1'
   #     branch: 'main'
+  webhooks:
+    - state: 'deployed'
+      type: 'codefresh'
+      name: 'post deployed pipeline'
+      pipelineId: 'andy-app-1/lifecycle-webhook-deployed'
+      description: 'execute after service deployed successfully'
+      trigger: 'lifecycle'
+      env:
+        SOURCE: 'yaml'
+        COUNTER: '1'
 
 services:
   - name: 'lifecycle-test-app-docker-1'
