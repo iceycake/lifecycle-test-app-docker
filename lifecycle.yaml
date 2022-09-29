@@ -18,6 +18,7 @@ environment:
       env:
         SOURCE: 'yaml'
         COUNTER: '1'
+        branch: 'main'
 
 services:
   - name: 'lifecycle-test-app-docker-1'
