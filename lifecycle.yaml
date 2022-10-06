@@ -64,7 +64,7 @@ services:
         PGDATA: '/var/lib/postgresql/data/pgdata'
       deployment:
         public: false
-        capacityType: 'ON_DEMAND'
+        capacityType: 'SPOT'
         serviceDisks:
           - name: 'postgres-volume'
             mountPath: '/var/lib/postgresql/data'
