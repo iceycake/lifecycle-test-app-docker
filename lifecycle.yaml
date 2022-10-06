@@ -70,3 +70,8 @@ services:
             mountPath: '/var/lib/postgresql/data'
             accessModes: 'ReadWriteOnce'
             storageSize: '5Gi'
+          - name: 'dshm'
+            medium: 'MEMORY'
+            mountPath: '/dev/shm'
+            accessModes: 'ReadWriteOnce'
+            storageSize: '2Gi'            
