@@ -6,3 +6,5 @@ environment:
     - name: 'lifecycle-003-alpha-1'
       repository: 'iceycake/lifecycle-0.0.3-alpha-1'
       branch: 'add-db'
+    - name: 'test-app'
+      serviceId: 103
