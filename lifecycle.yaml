@@ -1,0 +1,62 @@
+---
+version: '0.0.3-alpha-1'
+
+environment:
+  defaultServices:
+    - name: 'lifecycle-test-app-docker-1'
+
+services:
+  - name: 'lifecycle-test-app-docker-1'
+    requires:
+      - name: 'lta-db'
+    github:
+      repository: 'iceycake/lifecycle-test-app-docker'
+      branchName: 'main'
+      docker:
+        defaultTag: 'main'
+        init:
+          dockerfilePath: 'sysops/dockerfiles/init.dockerfile'
+          env:
+            COMPONENT: app
+            ENV: lifecycle
+            DB_HOST: '{{lta-db_internalHostname}}'
+        app:
+          dockerfilePath: 'sysops/dockerfiles/app.dockerfile'
+          ports:
+            - 80
+          env:
+            ENV: lifecycle
+            COMPONENT: app
+            DB_HOST: "{{lta-db_internalHostname}}"
+            BUILD_UUID: "{{buildUUID}}"        
+      deployment:
+        public: true
+        capacityType: 'SPOT'
+        network:
+          grpc:
+            enable: true
+  - name: 'lta-db'
+    docker:
+      dockerImage: 'postgres'
+      defaultTag: 'latest'
+      ports:
+        - 5432
+      env:
+        POSTGRES_USER: 'postgres_user'
+        POSTGRES_PASSWORD: 'postgres'
+        POSTGRES_DB: 'postgres_db'
+        SERVICE: 'test-db'
+        PGDATA: '/var/lib/postgresql/data/pgdata'
+      deployment:
+        public: false
+        capacityType: 'SPOT'
+        serviceDisks:
+          - name: 'postgres-volume'
+            mountPath: '/var/lib/postgresql/data'
+            accessModes: 'ReadWriteOnce'
+            storageSize: '5Gi'
+          - name: 'dshm'
+            medium: 'MEMORY'
+            mountPath: '/dev/shm'
+            accessModes: 'ReadWriteOnce'
+            storageSize: '2Gi'            
