@@ -7,19 +7,11 @@ environment:
 
 services:
   - name: 'lifecycle-test-app-docker'
-    requires:
-      - name: 'lta-db'
     github:
       repository: 'iceycake/lifecycle-test-app-docker'
       branchName: 'main'
       docker:
         defaultTag: 'main'
-        init:
-          dockerfilePath: 'sysops/dockerfiles/init.dockerfile'
-          env:
-            COMPONENT: app
-            ENV: lifecycle
-            DB_HOST: '{{lta-db_internalHostname}}'
         app:
           dockerfilePath: 'sysops/dockerfiles/app.dockerfile'
           ports:
@@ -35,28 +27,3 @@ services:
         network:
           grpc:
             enable: true
-  - name: 'lta-db'
-    docker:
-      dockerImage: 'postgres'
-      defaultTag: 'latest'
-      ports:
-        - 5432
-      env:
-        POSTGRES_USER: 'postgres_user'
-        POSTGRES_PASSWORD: 'postgres'
-        POSTGRES_DB: 'postgres_db'
-        SERVICE: 'test-db'
-        PGDATA: '/var/lib/postgresql/data/pgdata'
-      deployment:
-        public: false
-        capacityType: 'SPOT'
-        serviceDisks:
-          - name: 'postgres-volume'
-            mountPath: '/var/lib/postgresql/data'
-            accessModes: 'ReadWriteOnce'
-            storageSize: '5Gi'
-          - name: 'dshm'
-            medium: 'MEMORY'
-            mountPath: '/dev/shm'
-            accessModes: 'ReadWriteOnce'
-            storageSize: '2Gi'            
