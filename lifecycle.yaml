@@ -3,10 +3,10 @@ version: '0.0.3-alpha-1'
 
 environment:
   defaultServices:
-    - name: 'lifecycle-test-app-docker-1'
+    - name: 'lifecycle-test-app-docker'
 
 services:
-  - name: 'lifecycle-test-app-docker-1'
+  - name: 'lifecycle-test-app-docker'
     requires:
       - name: 'lta-db'
     github:
