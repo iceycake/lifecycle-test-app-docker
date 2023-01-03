@@ -2,6 +2,16 @@
 version: '0.0.3-alpha-1'
 
 environment:
+  webhooks:
+    - state: 'deployed'
+      type: 'codefresh'
+      name: 'Lifecycle: Deployed'
+      description: 'GraphQL Contentful/Lifecycle: Deployed'
+      pipelineId: '63a5f73e6d7b760e3da8163b'
+      trigger: 'Verify'
+      env:
+        branch: 'main'    
+        ENV: 'lifecycle'
   defaultServices:
     - name: 'lifecycle-test-app-docker'
 
