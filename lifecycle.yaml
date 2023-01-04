@@ -12,6 +12,7 @@ environment:
       env:
         branch: 'main'    
         ENV: 'lifecycle'
+        ENV: 'should error'
   defaultServices:
     - name: 'lifecycle-test-app-docker'
 
